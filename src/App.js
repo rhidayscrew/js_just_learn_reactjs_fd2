@@ -1,7 +1,5 @@
 import React, { useState, useEffect } from "react";
 import { Table } from "react-bootstrap";
-import 'bootstrap/dist/css/bootstrap.min.css';
-
 import axios from "axios";
 
 import "./App.css";
@@ -31,7 +29,7 @@ function App() {
 
     function createAttandance() {
       axios
-        .post("https://powerful-dawn-07149.herokuapp.com/create", payload)
+        .post("http://localhost:4000/create", payload)
         .then(({ data: { data } }) => {
           setAttandances([...attandances, data]);
         })
@@ -74,7 +72,7 @@ function App() {
     function submitUpdateAttandance() {
       axios
         .patch(
-          `https://powerful-dawn-07149.herokuapp.com/update/${attandanceId}`,
+          `http://localhost:4000/update/${attandanceId}`,
           payload
         )
         .then(data => {
@@ -108,7 +106,7 @@ function App() {
 
   function deleteAttandance(id) {
     axios
-      .delete(`https://powerful-dawn-07149.herokuapp.com/delete/${id}`)
+      .delete(`http://localhost:4000/delete/${id}`)
       .then(data => {
         const deleteAttandaceById = attandances.filter(
           attandance => attandance._id !== id
@@ -124,7 +122,7 @@ function App() {
   useEffect(() => {
     function getData() {
       axios
-        .get("https://powerful-dawn-07149.herokuapp.com")
+        .get("http://localhost:4000")
         .then(({ data: { data } }) => {
           setAttandances(data);
         })
